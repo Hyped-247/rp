@@ -10,6 +10,12 @@ class OwnerForm(forms.ModelForm):
     password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
+    address_1 = forms.CharField(max_length=128, required=False)
+    address_2 = forms.CharField(max_length=128, required=False)
+    city = forms.CharField(max_length=225, required=False)
+    state = forms.CharField(max_length=225, required=False)
+    zip_code = forms.CharField(max_length=5, required=False)
+
     class Meta:
         model = User
         fields = [
@@ -19,6 +25,11 @@ class OwnerForm(forms.ModelForm):
             'email',
             'password1',
             'password2',
+            'address_1',
+            'address_2',
+            'state',
+            'city',
+            'zip_code'
         ]
 
     def clean_username(self):

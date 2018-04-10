@@ -14,5 +14,5 @@ class Login(forms.ModelForm):
         if User.objects.filter(email__iexact=email, password__iexact=password).exists():
             raise ValidationError("Invalid email or wrong password")
         else:
-            return email
+            return self.cleaned_data
 
