@@ -1,7 +1,8 @@
 from django.contrib.auth.views import LoginView
 from django.conf.urls import url
-from Owner.views import RegisterOwner
+from Owner.views import RegisterOwner, OwnerMain
 
 urlpatterns = [
-    url(r'^$', RegisterOwner.as_view(), name='owner-main'),
+    url(r'^register/$', RegisterOwner.as_view(), name='register'),
+    url(r'^main/$', OwnerMain.as_view(), name='main'),
 ]
