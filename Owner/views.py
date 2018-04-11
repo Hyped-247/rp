@@ -26,11 +26,3 @@ class RegisterOwner(CreateView):
 
 class OwnerMain(ListView):
     template_name = 'Owner/main.html'
-
-"""
-
-<a href="{% url 'register-owner' %}"> Create account for teacher </a><br>
-
-
-{% include 'register.html' %}
-"""
