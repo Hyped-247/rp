@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from Owner.models import Owner
 
 
-class OwnerForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
 
     # if you declear the veribles here you will over write what is in the model.
     password1 = forms.CharField(label='Enter password', widget=forms.PasswordInput)
@@ -65,14 +65,4 @@ class OwnerForm(forms.ModelForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
-
-        owner = Owner()
-        owner.user = user
-        owner.address_1 = self.cleaned_data['address_1']
-        owner.address_2 = self.cleaned_data['address_2']
-        owner.city = self.cleaned_data['city']
-        owner.state = self.cleaned_data['state']
-        owner.zip_code = self.cleaned_data['zip_code']
-        owner.save()
-
         return user

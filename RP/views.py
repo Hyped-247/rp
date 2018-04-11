@@ -1,20 +1,26 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.views import LoginView, LogoutView
 from django.core.exceptions import ValidationError
 from django.shortcuts import redirect
-from django.views.generic.base import View
 from Owner.models import Owner
 from Renter.models import Renter
 
+"""
+class Login(LoginView):
+    template_name = 'registration/login.html'
 
-class LoginView(View):
-    template_name = 'index.html'
+    def get_redirect_url(self):
+        pass
 
-    def post(self, request):
+    def post(self, request, *args, **kwargs):
 
         # check if email and password are correct.
         email = request.POST['email']
         password = request.POST['password']
-        user = authenticate(email__iexact=email, password__iexact=password)  # return None if user is not authenticate
+        print(email)
+        print(password)
+        user = authenticate(email=email, password=password)  # return None if user is not authenticate
+        print(user)
 
         if user is not None:
             login(request, user)  # login the user.
@@ -29,10 +35,10 @@ class LoginView(View):
             else:
                 # else send him to the owner page.
                 return redirect('')
-
         else:
             raise ValidationError("Invalid email or wrong password")
 
 
-class LogOut():
-    pass
+class Logout(LogoutView):
+    next_page = 'login.html'
+"""
