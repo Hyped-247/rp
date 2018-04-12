@@ -20,5 +20,11 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="mmahjoub@vmwardropbe.westmont.edu" uuid="5bf365cb-8486-4294-94a4-b035369e6c62">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://vmwardropbe.westmont.edu:5432/mmahjoub</jdbc-url>
+    </data-source>
   </component>
 </project>
