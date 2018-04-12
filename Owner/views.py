@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import CreateView, ListView
 from Owner.forms import UserForm
@@ -24,5 +25,9 @@ class RegisterOwner(CreateView):
         return redirect('login')
 
 
-class OwnerMain(ListView):
+class ListViewOwner(ListView):
     template_name = 'Owner/main.html'
+
+    def get_queryset(self):
+        return User.objects.all()
+

@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from Worker.forms import UserForm
 from Worker.models import Worker
 
@@ -15,3 +15,7 @@ class RegisterWorker(CreateView):
         worker.skill = form.cleaned_data['skill']
         worker.save()
         return redirect('login')
+
+
+class ListViewWorker(ListView):
+    template_name = 'Worker/main.html'

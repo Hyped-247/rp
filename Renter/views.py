@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from Renter.forms import UserForm
 from Renter.models import Renter
 
@@ -19,3 +19,7 @@ class RegisterRenter(CreateView):
         renter.job = form.cleaned_data['job']
         renter.save()
         return redirect('login')
+
+
+class ListViewRenter(ListView):
+    template_name = 'Owner/main.html'

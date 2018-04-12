@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('Worker', '0001_initial'),
         ('Apt', '0001_initial'),
-        ('Owner', '0001_initial'),
+        ('AptBuilding', '0001_initial'),
     ]
 
     operations = [
