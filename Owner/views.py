@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import CreateView, ListView
+
+from AptBuilding.models import AptBuilding
 from Owner.forms import UserForm
 from Owner.models import Owner
 
@@ -27,6 +29,11 @@ class RegisterOwner(CreateView):
 
 class ListViewOwner(ListView):
     template_name = 'Owner/main.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ListViewOwner, self).get_context_data(**kwargs)
+        context['AptBuilding'] = AptBuilding.objects.filter(owner__user__username__iexact=self.request.user)
+        return context
 
     def get_queryset(self):
         return User.objects.all()

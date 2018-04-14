@@ -10,3 +10,6 @@ class AptBuilding(models.Model):
     city = models.CharField(max_length=225, default="Zanesville")
     state = models.CharField(max_length=225, default="Zanesville")
     zip_code = models.CharField(max_length=5, default="43701")
+
+    def __str__(self):
+        return self.name

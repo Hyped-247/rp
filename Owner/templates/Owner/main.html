@@ -6,9 +6,9 @@
 </head>
     <body>
         <h1> Add your AptBuilding </h1>
-
         <a href="{% url 'owner:apt-building:create' %}"> Add Here </a><br>
-
-
+        {% for apt in AptBuilding %}
+            {{ apt }}<br>
+        {% endfor %}
     </body>
 </html>

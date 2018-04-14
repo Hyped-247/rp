@@ -9,8 +9,8 @@ class Redirect(ListView):
 
     def render_to_response(self, context, **response_kwargs):
 
-        print(Renter.objects.using('mmahjoub').filter(user__username__iexact=self.request.user))
-
+        # todo: find a way to run quires using filter.
+        Renter.objects.filter(user__username__iexact=self.request.user).exists()
 
         # if the user is renter, then send him to the renter page.
         if Renter.objects.filter(user__username__iexact=self.request.user).exists():
