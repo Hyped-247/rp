@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from AptBuilding.forms import AptBuildingForm
 from AptBuilding.models import AptBuilding
@@ -13,12 +13,12 @@ class CreateAptBuilding(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         post = form.save(commit=False)
-        post.owner = Owner.objects.get(user__username__iexact=self.request.user)
+        post.owner = Owner.objects.get(user=self.request.user)
         post.save()
         return self.get_success_url()
 
     def get_success_url(self):
-        return HttpResponseRedirect('owner:main')
+        return redirect(reverse('owner:main'))
 
 
 class UpdateAptBuilding(LoginRequiredMixin, UpdateView):
@@ -28,7 +28,7 @@ class UpdateAptBuilding(LoginRequiredMixin, UpdateView):
     success_message = "Updated Successfully"
 
     def get_success_url(self):
-        return redirect('owner:main')
+        return reverse('owner:main')
 
 
 class DeleteAptBuilding(LoginRequiredMixin, DeleteView):
@@ -36,4 +36,4 @@ class DeleteAptBuilding(LoginRequiredMixin, DeleteView):
     model = AptBuilding
 
     def get_success_url(self):
-        return redirect('owner:main')
+        return reverse('owner:main')

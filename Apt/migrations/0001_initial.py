@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('AptBuilding', '0001_initial'),
+        ('Apt', '0001_initial'),
     ]
 
     operations = [

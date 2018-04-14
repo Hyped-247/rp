@@ -9,15 +9,12 @@ class Redirect(ListView):
 
     def render_to_response(self, context, **response_kwargs):
 
-        # todo: find a way to run quires using filter.
-        Renter.objects.filter(user__username__iexact=self.request.user).exists()
-
         # if the user is renter, then send him to the renter page.
-        if Renter.objects.filter(user__username__iexact=self.request.user).exists():
+        if Renter.objects.filter(user=self.request.user).exists():
             return redirect('renter:main')
 
         # if the user is owner, then send him to the owner page.
-        elif Owner.objects.filter(user__username__iexact=self.request.user).exists():
+        elif Owner.objects.filter(user=self.request.user).exists():
             return redirect('owner:main')
         else:
             # else send him to the worker page.
