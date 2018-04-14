@@ -18,17 +18,22 @@ class CreateAptBuilding(LoginRequiredMixin, CreateView):
         return self.get_success_url()
 
     def get_success_url(self):
-        #return HttpResponseRedirect(self.request.path_info)
-        return redirect('owner:main')
-
-
+        return HttpResponseRedirect('owner:main')
 
 
 class UpdateAptBuilding(LoginRequiredMixin, UpdateView):
     template_name = 'AptBuilding/update.html'
+    model = AptBuilding
     form_class = AptBuildingForm
+    success_message = "Updated Successfully"
+
+    def get_success_url(self):
+        return redirect('owner:main')
 
 
 class DeleteAptBuilding(LoginRequiredMixin, DeleteView):
     template_name = 'AptBuilding/delete.html'
     model = AptBuilding
+
+    def get_success_url(self):
+        return redirect('owner:main')
