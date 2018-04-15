@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import CreateView, ListView
@@ -24,12 +25,12 @@ class RegisterOwner(CreateView):
         return redirect('login')
 
 
-class ListViewOwner(ListView):
+class ListViewOwner(LoginRequiredMixin, ListView):
     template_name = 'Owner/main.html'
 
     def get_context_data(self, **kwargs):
         context = super(ListViewOwner, self).get_context_data(**kwargs)
-        context['Apt'] = AptBuilding.objects.filter(owner__user=self.request.user)
+        context['AptBuilding'] = AptBuilding.objects.filter(owner__user=self.request.user)
         return context
 
     def get_queryset(self):

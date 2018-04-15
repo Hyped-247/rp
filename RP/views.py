@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import ListView
+
+from AptBuilding.models import AptBuilding
 from Owner.models import Owner
 from Renter.models import Renter
 
@@ -19,6 +21,18 @@ class Redirect(ListView):
         else:
             # else send him to the worker page.
             return redirect('worker:main')
+
+    def get_queryset(self):
+        return User.objects.all()
+
+
+class Home(ListView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Home, self).get_context_data(**kwargs)
+        context['AptBuilding'] = AptBuilding.objects.all()
+        return context
 
     def get_queryset(self):
         return User.objects.all()

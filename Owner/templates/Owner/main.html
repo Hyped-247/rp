@@ -5,13 +5,17 @@
     <title>Title</title>
 </head>
     <body>
+        <a href="{% url 'home' %}"> Home </a><br>
         <h1> Add your AptBuilding </h1>
+
         <a href="{% url 'owner:apt-building:create' %}"> Add Here </a><br>
         {% for apt in AptBuilding %}
-            <a href="{% url 'owner:apt:detail' pk=apt.pk %}"> <h1>{{ apt }}</h1> </a>
+            <a href="{% url 'owner:apt:detail' pk=apt.pk %}"> {{ apt }} </a>
             <a href="{% url 'owner:apt-building:update' pk=apt.pk %}"> Update </a>
             <a href="{% url 'owner:apt-building:delete' pk=apt.pk %}"> Delete </a>
             <br>
+            {% empty %}
+            <h2> There is no apt buildings</h2>
         {% endfor %}
     </body>
 </html>

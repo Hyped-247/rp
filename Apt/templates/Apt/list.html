@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+        <a href="{% url 'owner:main'%}"> Back to AptBuilding </a><br>
+        <h1> Add your Apt </h1>
+        <a href="{% url 'owner:apt:create' pk=aptBuilding.pk %}"> Add Here </a><br>
+        {% for apt in Apt %}
+            {{ apt }}
+            <a href="{% url 'owner:apt:update' pk=apt.pk aptBuilding_pk=aptBuilding.pk %}"> Update </a>
+            <a href="{% url 'owner:apt:delete' pk=apt.pk aptBuilding_pk=aptBuilding.pk %}"> Delete </a>
+            <br>
+            {% empty %}
+            <h2> There is no apts for this building </h2>
+        {% endfor %}
+    </body>
+</html>

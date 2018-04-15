@@ -8,3 +8,6 @@ class Apt(models.Model):
     allow_smocking = models.BooleanField(default=False)
     room_num = models.IntegerField(default=4)
 
+    def __str__(self):
+        return "Apt num: " + str(self.number)
+
