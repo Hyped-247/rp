@@ -1,0 +1,12 @@
+<h2> Apt information </h2>
+<a href="{% url 'home' %}"> Home </a>
+<a href="{% url 'owner:main' %}"> My main page </a><br>
+
+Apt num: {{ Apt.number }}
+
+{% if Apt.allow_smocking  %}
+    <p> Smocking is allowed in this apts</p>
+{% else %}
+        <p> Smocking is not allowed in this apts</p>
+{% endif %}
+This apt has {{ Apt.room_num }} rooms

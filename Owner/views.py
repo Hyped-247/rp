@@ -2,7 +2,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.views.generic import CreateView, ListView
-
 from AptBuilding.models import AptBuilding
 from Owner.forms import UserForm
 from Owner.models import Owner

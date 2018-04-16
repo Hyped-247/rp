@@ -1,0 +1,15 @@
+<h2> AptBuilding information </h2>
+<a href="{% url 'home' %}"> Home </a>
+<a href="{% url 'owner:main' %}"> My main page </a><br>
+Owner: {{ AptBuilding.owner }}<br>
+Name: {{ AptBuilding.name }}<br>
+{{ AptBuilding.address_1 }}<br>
+{{ AptBuilding.address_2 }}<br>
+{{ AptBuilding.city }}<br>
+{{ AptBuilding.state }}<br>
+{{ AptBuilding.zip_code }}<br>
+
+<h2> All apts information </h2>
+{% for apts in AptBuilding.apt_set.all %}
+   <a href="{%  url 'owner:apt:detail' pk=apts.pk %}">{{ apts }}</a><br>
+{% endfor %}

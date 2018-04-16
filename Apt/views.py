@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from Apt.forms import AptForm
 from Apt.models import Apt
 from AptBuilding.models import AptBuilding
@@ -22,6 +22,18 @@ class AptListView(LoginRequiredMixin, ListView):
         return User.objects.all()
 
 
+class DetailApt(LoginRequiredMixin, DetailView):
+    template_name = 'Apt/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DetailApt, self).get_context_data(**kwargs)
+        context['Apt'] = Apt.objects.get(id=self.kwargs['pk'])
+        return context
+
+    def get_queryset(self):
+        return Apt.objects.all()
+
+
 class CreateApt(LoginRequiredMixin, CreateView):
     template_name = 'Apt/create.html'
     form_class = AptForm
@@ -33,7 +45,7 @@ class CreateApt(LoginRequiredMixin, CreateView):
         return self.get_success_url()
 
     def get_success_url(self, **kwargs):
-        return redirect(reverse('owner:apt:detail', kwargs={'pk' : self.kwargs['pk']}))
+        return redirect(reverse('owner:apt:list', kwargs={'pk' : self.kwargs['pk']}))
 
 
 class UpdateApt(LoginRequiredMixin, UpdateView):
@@ -43,7 +55,7 @@ class UpdateApt(LoginRequiredMixin, UpdateView):
     success_message = "Updated Successfully"
 
     def get_success_url(self, **kwargs):
-        return reverse('owner:apt:detail', kwargs={'pk' : self.kwargs['aptBuilding_pk']})
+        return reverse('owner:apt:list', kwargs={'pk' : self.kwargs['aptBuilding_pk']})
 
 
 class DeleteApt(LoginRequiredMixin, DeleteView):
@@ -51,4 +63,4 @@ class DeleteApt(LoginRequiredMixin, DeleteView):
     model = Apt
 
     def get_success_url(self, **kwargs):
-        return reverse('owner:apt:detail', kwargs={'pk' : self.kwargs['aptBuilding_pk']})
+        return reverse('owner:apt:list', kwargs={'pk' : self.kwargs['aptBuilding_pk']})
