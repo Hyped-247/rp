@@ -1,0 +1,24 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!<br>
+
+    <a href="{% url 'owner:main' %}"> My main page </a>
+  <p>
+      <a href="{% url 'logout' %}">logout</a>
+  </p>
+    <h2> I have access to data.. </h2>
+    {% for apt in Apt %}
+        <a href="#">{{ apt }}</a><br>
+    {% endfor %}
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a><br>
+  <a href="{% url 'register' %}"> Create an account </a>
+{% endif %}
+{% endblock %}

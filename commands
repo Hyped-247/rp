@@ -1,0 +1,21 @@
+python3.6 manage.py createsuperuser
+python3.6 manage.py startapp play
+python3.6 manage.py makemigrations
+python3.6 manage.py migrate
+python3.6 manage.py graph_models -a -o myapp_models.png
+python3.6 manage.py show_urls
+python3.6 manage.py validate_templates
+python3.6 manage.py collectstatic
+User: NPT
+Password: Envns1234
+
+Good source for Django Password Reset Tutorial: https://wsvincent.com/django-user-authentication-tutorial-password-reset/
+Good source for Django Login/Logout Tutorial: https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/
+This is what you would use in the real world for sending emails with your website: MailGun
+Create custom user: https://wsvincent.com/django-custom-user-model-tutorial/
+Link Facebook and even Github to your website: https://wsvincent.com/django-allauth-tutorial/
+
+Good source: https://djangoforbeginners.com
+
+Take this course Mo because it is going to teach you how to process payments:
+https://www.codingforentrepreneurs.com/courses/ecommerce/
